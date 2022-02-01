@@ -7,8 +7,8 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <UseState name="Use pinky" />
-      <ClassState name="Class pacha" />
+      <UseState name="Use State" />
+      <ClassState name="Class State" />
     </div>
   );
 }
