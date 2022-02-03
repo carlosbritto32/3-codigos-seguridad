@@ -13,12 +13,12 @@ function UseReducer({ name }) {
         if (state.value === SECURITY_CODE) {
           // onConfirm();
           dispatch({
-            type: "CONFIRM",
+            type: actionTypes.confirm,
           });
         } else {
           // onError();
           dispatch({
-            type: "ERROR",
+            type: actionTypes.error,
           });
         }
       }, 1000);
@@ -41,7 +41,7 @@ function UseReducer({ name }) {
           onChange={(e) => {
             // onWrite(e.target.value);
             dispatch({
-              type: "WRITE",
+              type: actionTypes.write,
               payload: e.target.value,
             });
           }}
@@ -51,7 +51,7 @@ function UseReducer({ name }) {
           onClick={() => {
             // onCheck();
             dispatch({
-              type: "CHECK",
+              type: actionTypes.check,
             });
           }}
         >
@@ -69,7 +69,7 @@ function UseReducer({ name }) {
           onClick={() => {
             // onDelete();
             dispatch({
-              type: "DELETE",
+              type: actionTypes.delete,
             });
           }}
         >
@@ -80,7 +80,7 @@ function UseReducer({ name }) {
           onClick={() => {
             // onReset();
             dispatch({
-              type: "RESET",
+              type: actionTypes.reset,
             });
           }}
         >
@@ -96,7 +96,7 @@ function UseReducer({ name }) {
           onClick={() => {
             // onReset();
             dispatch({
-              type: "RESET",
+              type: actionTypes.reset,
             });
           }}
         >
@@ -115,31 +115,40 @@ const initialState = {
   confirmed: false,
 };
 
+const actionTypes = {
+  confirm: "CONFIRM",
+  error: "ERROR",
+  check: "CHECK",
+  write: "WRITE",
+  delete: "DELETE",
+  reset: "RESET",
+};
+
 const reducerObject = (state, payload) => ({
-  ERROR: {
+  [actionTypes.error]: {
     ...state,
     error: true,
     loading: false,
   },
-  CHECK: {
+  [actionTypes.check]: {
     ...state,
     loading: true,
   },
-  CONFIRM: {
+  [actionTypes.confirm]: {
     ...state,
     loading: false,
     error: false,
     confirmed: true,
   },
-  WRITE: {
+  [actionTypes.write]: {
     ...state,
     value: payload,
   },
-  DELETE: {
+  [actionTypes.delete]: {
     ...state,
     deleted: true,
   },
-  RESET: {
+  [actionTypes.reset]: {
     ...state,
     confirmed: false,
     deleted: false,
